@@ -3,9 +3,9 @@ let locks = JSON.parse(fs.readFileSync('./lock.json', 'utf8'));
 
 module.exports = {
 	name: 'safe', 
-	description: 'se attivata la modalità safe quando si cancellerà un canale o un ruolo, questo verrà ricreato identico',
+	description: 'if the safe mode is activated when deleting a channel or a role, it will be recreated identical',
 	execute(client, message, args) {
-        if (!message.member.hasPermission('ADMINISTRATOR')) return message.reply('Non hai il permesso per farlo!');
+        if (!message.member.hasPermission('ADMINISTRATOR')) return message.reply('You don\'t have permission to do that!');
 
         locks = JSON.parse(fs.readFileSync('./lock.json', 'utf8'));
 
