@@ -2,23 +2,23 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: "kick",
-    description: "kicka l'utente mensionato",
+    description: "kicks the mentioned user",
 
     execute(bot, message, args) {
-        if (!message.member.hasPermission('KICK_MEMBERS')) return message.reply('Non hai il permesso per farlo!');
+        if (!message.member.hasPermission('KICK_MEMBERS')) return message.reply('You don\'t have permission to do that!');
 
         var wUser = message.guild.member(message.mentions.users.first());
         if(!wUser) return message.reply('Utente Inesistente!');
         message.guild.member(wUser).kick().then(() => {
             message.channel.send({
                 embed: {
-                    title: "Utente Kickato",
+                    title: "User kicked",
                     color: "#ff1100",
-                    description: `${wUser.user.tag} è stato kickato da parte di ${message.author.tag}.`
+                    description: `${wUser.user.tag} was kicked by${message.author.tag}.`
                 }
             });
         }).catch(() => {
-            message.reply('Impossibile kickare l\'utente');
+            message.reply('Unable to kick user');
         })
 
     }
