@@ -114,13 +114,6 @@ client.on('message', (message) => {
     if (message.content == '!si' ||
         message.content == '!no'
     ) return;
-
-    const args = message.content.substring(PREFIX.length).split(' ');
-
-    if (!args[0]) return message.reply('Inserisci un comando');
-
-    if (client.commands.get(args[0].toLowerCase())) client.commands.get(args[0].toLowerCase()).execute(client, message, args);
-    else message.reply("comando inesistente!");
 });
 
 var daVer = 'da verificare';
