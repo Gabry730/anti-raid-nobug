@@ -3,9 +3,9 @@ let locks = JSON.parse(fs.readFileSync('./lock.json', 'utf8'));
 
 module.exports = {
 	name: 'botban',
-	description: 'se attivato banna qualunque bot entri',
+	description: 'if activated it bans any bot that enters',
 	execute(client, message, args) {
-        if (!message.guild.ownerID == message.member.id) return message.reply('Solo l\'owner del server può farlo!');
+        if (!message.guild.ownerID == message.member.id) return message.reply('Only the server owner can do it!');
 
         locks = JSON.parse(fs.readFileSync('./lock.json', 'utf8'));
 
