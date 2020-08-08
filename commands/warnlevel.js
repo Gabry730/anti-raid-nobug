@@ -3,7 +3,7 @@ let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 module.exports = {
     name: "warnlevel",
-    description: "mostra quante warns ha l'utente mensionato",
+    description: "shows how many warns the named user has",
 
     execute(bot, message, args) {
         let wUser;
@@ -16,6 +16,6 @@ module.exports = {
 
         let warnlevel = warns[wUser.id].warns;
 
-        message.channel.send(`<@${wUser.id}> ha **${warnlevel}** warns.`);
+        message.channel.send(`<@${wUser.id}> he has **${warnlevel}** warns.`);
     }
 }
