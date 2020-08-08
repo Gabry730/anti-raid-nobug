@@ -3,14 +3,14 @@ let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 module.exports = {
     name: "warn",
-    description: "aggiunge una warn all'utente mesionato",
+    description: "add a warn to the mentioned user",
 
     execute(bot, message, args) {
-        if (!message.member.hasPermission('BAN_MEMBERS')) return message.reply('Non hai il permesso per farlo!');
+        if (!message.member.hasPermission('BAN_MEMBERS')) return message.reply('You don\'t have permission to do that!');
         warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
         let wUser = message.guild.member(message.mentions.users.first());
         console.log(wUser);
-        if(!wUser) return message.reply("User Inesistente!");
+        if(!wUser) return message.reply("User Non existent!");
 
         if(!warns[wUser.id]) warns[wUser.id] = {
             warns: 0
@@ -23,14 +23,14 @@ module.exports = {
         });
 
         let warnchannel = message.channel;
-        if(!warnchannel) return message.reply("impossibile trovare il canale");
+        if(!warnchannel) return message.reply("unable to find the channel");
 
         let userName = wUser.user.tag;
 
         warnchannel.send({
             embed: {
-                title: "Warn Aggiunta",
-                description: "Warn aggiunta all'utente **" + userName + "**, che attualmente ha **" +
+                title: "Warn Addition",
+                description: "Warn added to the user **" + userName + "**, it currently has **" +
                     warns[wUser.id].warns + "** warnings!",
                 color: "#ff1100"
             }
@@ -41,7 +41,7 @@ module.exports = {
             message.guild.member(wUser).ban();
             message.channel.send({
                 embed: {
-                    title: "Utente Bannato",
+                    title: "Banned User",
                     color: "#ff1100",
                     description: `${wUser.user.tag} è stato bannato per aver raggiunto 3 warns.`
                 }
